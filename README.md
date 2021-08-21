@@ -10,9 +10,6 @@
 * [Usage](#usage)
 * [Project Status](#project-status)
 * [Room for Improvement](#room-for-improvement)
-* [Acknowledgements](#acknowledgements)
-* [Contact](#contact)
-<!-- * [License](#license) -->
 
 
 ## General Information
@@ -36,8 +33,10 @@ List the ready features here:
 - Possibility to transfer money using receiver's card number
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
-<!-- If you have screenshots you'd like to share, include them here. -->
+![create_account](./screenshots/create_account.png)\
+![log_in](./screenshots/log_in.png)\
+![balace_income](./screenshots/balace_income.png)\
+![add_income](./screenshots/add_income.png)
 
 
 ## Setup
