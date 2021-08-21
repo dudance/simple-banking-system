@@ -19,7 +19,9 @@ public class Bank {
             PreparedStatement deleteFromDatabase = con.prepareStatement(deleteId);
             deleteFromDatabase.setInt(1, currentUsersId);
             deleteFromDatabase.executeUpdate();
-
+            database.setLoggedIn(false);
+            currentUsersId = -1;
+            currentUsersNumber = "";
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -138,6 +140,7 @@ public class Bank {
 
     static void doTransfer(DatabaseConnection database) {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter card number:");
         String transferReceiver = scanner.next();
         if (currentUsersNumber.equals(transferReceiver)) {
             System.out.println("You can't transfer money to the same account!");
@@ -187,14 +190,9 @@ public class Bank {
                 System.out.println("0. Exit");
                 chosenOption = scanner.nextInt();
                 switch (chosenOption) {
-                    case 1:
-                        Bank.createAccount(databaseConnection);
-                        break;
-                    case 2:
-                        databaseConnection.setLoggedIn(Bank.logIn(databaseConnection));
-                        break;
-                    case 0:
-                        System.exit(0);
+                    case 1 -> Bank.createAccount(databaseConnection);
+                    case 2 -> databaseConnection.setLoggedIn(Bank.logIn(databaseConnection));
+                    case 0 -> System.exit(0);
                 }
             } else {
                 System.out.println("1. Balance");
@@ -205,22 +203,12 @@ public class Bank {
                 System.out.println("0. Exit");
                 chosenOption = scanner.nextInt();
                 switch (chosenOption) {
-                    case 1:
-                        System.out.println("Balance: " + Bank.balance(databaseConnection));
-                        break;
-                    case 2:
-                        Bank.addIncome(databaseConnection);
-                        break;
-                    case 3:
-                        Bank.doTransfer(databaseConnection);
-                        break;
-                    case 4:
-                        Bank.closeAccount(databaseConnection);
-                        break;
-                    case 5:
-                        databaseConnection.setLoggedIn(Bank.logOut());
-                    case 0:
-                        System.exit(0);
+                    case 1 -> System.out.println("Balance: " + Bank.balance(databaseConnection));
+                    case 2 -> Bank.addIncome(databaseConnection);
+                    case 3 -> Bank.doTransfer(databaseConnection);
+                    case 4 -> Bank.closeAccount(databaseConnection);
+                    case 5 -> databaseConnection.setLoggedIn(Bank.logOut());
+                    case 0 -> System.exit(0);
                 }
             }
         }
